@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TestComponent } from './test/test.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { Employee } from './model/employee';
 
 @Component({
   selector: 'app-root',
@@ -23,10 +24,18 @@ import { EmployeeComponent } from './employee/employee.component';
 
   // `,
   styles: ['.success{color:green} .error{color:red} .warning{color:yellow}'],
-  templateUrl: './app.component.html',
+  // templateUrl: './app.component.html',
+
+  template: `<app-employee [employee]="employee" (nameClick)="onNameClick($event)"/> `,
   // styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  employee: Employee = {
+    "_id": "675173e704ea0d53bbcdb314",
+    "name": "User Tooto",
+    "department": "IT",
+    "level": "M"
+  }
   title = 'Title of component';
   age = 30;
   counter = 0;
@@ -48,5 +57,8 @@ export class AppComponent {
   }
   toggleInput() {
     this.valueTypeInput == "password" ? this.valueTypeInput = "text" : this.valueTypeInput = "password";
+  }
+  onNameClick(employeeId: string) {
+    alert(employeeId)
   }
 }

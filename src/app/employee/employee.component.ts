@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { LevelPipe } from '../level.pipe';
 import { Employee } from '../model/employee';
 import { DepartmentPipe } from '../department.pipe';
@@ -20,10 +20,10 @@ import { DepartmentPipe } from '../department.pipe';
   styleUrl: './employee.component.scss'
 })
 export class EmployeeComponent {
-  employee: Employee = {
-    "_id": "675173e704ea0d53bbcdb314",
-    "name": "User Tooto",
-    "department": "IT",
-    "level": "M"
+  employee = input.required<Employee>();
+  nameClick = output<string>();
+  handleNameClick() {
+    this.nameClick.emit(this.employee()._id)
   }
+
 }
