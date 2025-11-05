@@ -9,6 +9,7 @@
     .details-row {
         display: flex;
         margin-top: 10px;
+        align-items: center;
 
         .label {
             font-size: 1.8rem;
@@ -20,8 +21,9 @@
 
         .value {
             border-radius: 5px;
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             color: #1a1a1a;
+
         }
     }
 }

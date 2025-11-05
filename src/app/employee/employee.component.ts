@@ -1,26 +1,29 @@
 import { Component } from '@angular/core';
-type Department = "IT" | "Marketing" | 'HRR'
-type Level = 'J' | 'M' | 'S'
-interface Employee {
+import { LevelPipe } from '../level.pipe';
+import { Employee } from '../model/employee';
+import { DepartmentPipe } from '../department.pipe';
 
-  _id: string;
-  name: string;
-  department: Department
-  level: Level;
 
-}
 @Component({
   selector: 'app-employee',
   standalone: true,
-  imports: [],
+  imports: [LevelPipe, DepartmentPipe],
   templateUrl: './employee.component.html',
+  // template: `
+  //   <div class="employee-card">
+  //     <h2>{{ employee.name }}</h2>
+  //     <p><strong>Department:</strong> {{ employee.department }}</p>
+  //     <p><strong>Level:</strong> {{ "S"| level }}</p>
+  //   </div>
+
+  // `,
   styleUrl: './employee.component.scss'
 })
 export class EmployeeComponent {
-  employee = {
+  employee: Employee = {
     "_id": "675173e704ea0d53bbcdb314",
     "name": "User Tooto",
     "department": "IT",
-    "level": "J"
+    "level": "M"
   }
 }

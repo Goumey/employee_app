@@ -1,0 +1,26 @@
+[
+    {
+        "_id": "675173e704ea0d53bbcdb314",
+        "name": "User Tooto",
+        "department": "IT",
+        "level": "J"
+    },
+    {
+        "_id": "676826ebb4aa57c5d5d542b6",
+        "name": "Denise BRAY",
+        "department": "IT",
+        "level": "M"
+    },
+    {
+        "_id": "67682709b4aa57c5d5d542b8",
+        "name": "Kristi PETERSON",
+        "department": "HR",
+        "level": "J"
+    },
+    {
+        "_id": "67682730b4aa57c5d5d542ba",
+        "name": "Ellison TURNER",
+        "department": "Marketing",
+        "level": "M"
+    }
+]
