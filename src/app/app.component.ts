@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { TestComponent } from './test/test.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { Employee } from './model/employee';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [EmployeeComponent],
+  imports: [EmployeeComponent, EmployeeListComponent],
   //   template: `
   //   <h1>{{title + " "+ theInputtext}}</h1>
 
@@ -26,16 +27,27 @@ import { Employee } from './model/employee';
   styles: ['.success{color:green} .error{color:red} .warning{color:yellow}'],
   // templateUrl: './app.component.html',
 
-  template: `<app-employee [employee]="employee" (nameClick)="onNameClick($event)"/> `,
+  template: `
+  <app-employee-list  [employees]="employee" /> `,
   // styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  employee: Employee = {
+  employee: Employee[] = [{
     "_id": "675173e704ea0d53bbcdb314",
     "name": "User Tooto",
     "department": "IT",
     "level": "M"
-  }
+  }, {
+    "_id": "675173e704ea0d53bbcdb315",
+    "name": "User Tutu",
+    "department": "Marketing",
+    "level": "J"
+  }, {
+    "_id": "675173e704ea0d53bbcdb316",
+    "name": "User Tata",
+    "department": "HR",
+    "level": "S"
+  }];
   title = 'Title of component';
   age = 30;
   counter = 0;

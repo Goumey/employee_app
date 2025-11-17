@@ -1,8 +1,9 @@
 @let empl=employee();
+
 <div class="details">
     <div class="details-row">
         <div class="label">Name :</div>
-        <div class="value" (click)="handleNameClick()">{{empl.name}}</div>
+        <div class="value" (click)="handleNameClick(empl._id)">{{empl.name}}</div>
     </div>
     <div class="details-row">
         <div class="label">Level :</div>

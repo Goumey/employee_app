@@ -1,0 +1,26 @@
+<div class="tab-employee">
+
+    <table>
+        <thead>
+            <tr class="tab-head">
+                <th>Name</th>
+                <th>Level</th>
+                <th colspan="3">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(employee of employees();track employee._id){
+            <tr>
+                <td>{{employee.name}}</td>
+                <td>{{employee.level | level}}</td>
+                <td><button (click)="viewEmployee(employee._id)">View</button></td>
+                <td><button (click)="editEmployee(employee._id)">Edit</button></td>
+                <td><button (click)="deleteEmployee(employee._id)">Delete</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    @if(showCard) {
+    <app-employee [employee]="employee" />
+    }
+</div>

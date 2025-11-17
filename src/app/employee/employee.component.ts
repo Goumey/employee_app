@@ -22,8 +22,9 @@ import { DepartmentPipe } from '../department.pipe';
 export class EmployeeComponent {
   employee = input.required<Employee>();
   nameClick = output<string>();
-  handleNameClick() {
-    this.nameClick.emit(this.employee()._id)
+  handleNameClick(empId: string) {
+    this.nameClick.emit(empId);
+    // this.nameClick.emit(this.employee()._id)
   }
 
 }
