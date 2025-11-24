@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, OnInit, signal } from '@angular/core';
 import { Employee } from '../model/employee';
 import { DepartmentPipe } from '../department.pipe';
 import { LevelPipe } from '../level.pipe';
@@ -11,10 +11,10 @@ import { EmployeeComponent } from '../employee/employee.component';
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit {
   employees = input.required<Employee[]>();
   showCard = true;
-
+  localEmployees = signal<Employee[]>([]);
   toggleCardVisibility() {
     this.showCard = !this.showCard;
   }
@@ -22,13 +22,16 @@ export class EmployeeListComponent {
     console.log("Edit employee with ID:", empId);
   }
   employee!: Employee;
-
+  ngOnInit() {
+    this.localEmployees.set(this.employees()); // initialiser depuis l'input
+  }
   viewEmployee(empId: string) {
     this.employee = this.employees().find((e: Employee) => e._id === empId)!;
-    this.toggleCardVisibility();
+    // this.toggleCardVisibility();
 
   }
   deleteEmployee(empId: string) {
     console.log("Delete employee with ID:", empId);
+    this.localEmployees.update(list => list.filter(e => e._id !== empId));
   }
 }

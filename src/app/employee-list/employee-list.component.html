@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            @for(employee of employees();track employee._id){
+            @for(employee of localEmployees();track employee._id){
             <tr>
                 <td>{{employee.name}}</td>
                 <td>{{employee.level | level}}</td>
