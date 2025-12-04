@@ -1,0 +1,47 @@
+<!-- components/purchase/purchase.component.html -->
+<div class="container">
+    <h2>Achat de Tickets</h2>
+
+    <button (click)="simulatePurchase()" class="btn btn-primary">
+        Simuler l'achat
+    </button>
+
+    <button (click)="downloadTicketsPDF()" class="btn btn-success" [disabled]="tickets.length === 0">
+        Télécharger les tickets PDF
+    </button>
+
+    <!-- Template pour génération HTML vers PDF -->
+    <div id="tickets-template" style="display: none;">
+        <div *ngFor="let ticket of tickets" class="ticket">
+            <div class="ticket-header">
+                <h3>VOTRE BILLET</h3>
+            </div>
+            <div class="ticket-content">
+                <div class="ticket-info">
+                    <p><strong>Événement:</strong> {{ticket.eventName}}</p>
+                    <p><strong>Date:</strong> {{ticket.date}}</p>
+                    <p><strong>Lieu:</strong> {{ticket.location}}</p>
+                    <p *ngIf="ticket.seat"><strong>Place:</strong> {{ticket.seat}}</p>
+                    <p><strong>Acheteur:</strong> {{ticket.buyerName}}</p>
+                    <p><strong>Prix:</strong> {{ticket.price}}Mad</p>
+                    <p><strong>ID:</strong> {{ticket.id}}</p>
+                </div>
+                <div class="qrcode">
+                    <!-- Utilisation de getQRCode() au lieu de generateQRCodeForHTML() -->
+                    <img [src]="getQRCode(ticket.id)" alt="QR Code" width="100">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Affichage des tickets achetés -->
+    <div *ngIf="tickets.length > 0" class="tickets-preview">
+        <h3>Vos tickets achetés</h3>
+        <div *ngFor="let ticket of tickets" class="ticket-preview">
+            <p><strong>{{ticket.eventName}}</strong> - Place: {{ticket.seat}}</p>
+            <p>ID: {{ticket.id}}</p>
+            <!-- Affichage du QR code dans le preview -->
+            <img [src]="getQRCode(ticket.id)" alt="QR Code" width="100">
+        </div>
+    </div>
+</div>

@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TestComponent } from './test/test.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { Employee } from './model/employee';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeService } from './employee.service';
+import { PurchaseComponent } from './components/purchase/purchase.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [EmployeeComponent, EmployeeListComponent],
+  imports: [EmployeeComponent, EmployeeListComponent, PurchaseComponent],
   //   template: `
   //   <h1>{{title + " "+ theInputtext}}</h1>
 
@@ -28,32 +30,20 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
   // templateUrl: './app.component.html',
 
   template: `
-  <app-employee-list  [employees]="employee" /> `,
+  <app-purchase/>
+  <!-- <app-employee-list  [employees]="employee" />  -->
+  `,
   // styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  employee: Employee[] = [{
-    "_id": "675173e704ea0d53bbcdb314",
-    "name": "User Tooto",
-    "department": "IT",
-    "level": "M"
-  }, {
-    "_id": "675173e704ea0d53bbcdb315",
-    "name": "User Tutu",
-    "department": "Marketing",
-    "level": "J"
-  }, {
-    "_id": "675173e704ea0d53bbcdb316",
-    "name": "User Tata",
-    "department": "HR",
-    "level": "S"
-  }];
+  employee: Employee[] = [];
   title = 'Title of component';
   age = 30;
   counter = 0;
   theInputtext = '';
   msgClass = "success"
   valueTypeInput = 'password'
+  employeeService = inject(EmployeeService)
   increment() {
     this.counter++;
   }
